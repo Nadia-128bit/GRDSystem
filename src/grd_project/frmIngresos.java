@@ -1,5 +1,6 @@
 package grd_project;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -467,7 +468,8 @@ public final class frmIngresos extends javax.swing.JFrame {
             modelo.addRow(fila);
         }
         
-        table_Ingresos.setModel(modelo);       
+        table_Ingresos.setModel(modelo);
+        table_Ingresos.setBackground(new Color(189, 236, 182));
     }
     
     public int buscarIndiceCMB(String nombre, JComboBox combo) {
