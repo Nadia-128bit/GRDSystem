@@ -482,7 +482,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="btn_Eliminar" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="btn_DarAlta" min="-2" pref="105" max="-2" attributes="0"/>
                       <Component id="btn_Limpiar" min="-2" pref="105" max="-2" attributes="0"/>
                       <Component id="btn_Agregar" min="-2" pref="105" max="-2" attributes="0"/>
                       <Component id="btn_Editar" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
@@ -501,7 +501,7 @@
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="btn_Editar" min="-2" pref="50" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="btn_Eliminar" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="btn_DarAlta" min="-2" pref="50" max="-2" attributes="0"/>
                   <EmptySpace pref="70" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -530,12 +530,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_EditarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_Eliminar">
+        <Component class="javax.swing.JButton" name="btn_DarAlta">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar"/>
+            <Property name="text" type="java.lang.String" value="Dar alta"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_EliminarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_DarAltaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_Limpiar">

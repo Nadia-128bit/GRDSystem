@@ -65,7 +65,7 @@ public final class frmIngresos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_Agregar = new javax.swing.JButton();
         btn_Editar = new javax.swing.JButton();
-        btn_Eliminar = new javax.swing.JButton();
+        btn_DarAlta = new javax.swing.JButton();
         btn_Limpiar = new javax.swing.JButton();
         lbl_fotoIngreso = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -260,10 +260,10 @@ public final class frmIngresos extends javax.swing.JFrame {
             }
         });
 
-        btn_Eliminar.setText("Eliminar");
-        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+        btn_DarAlta.setText("Dar alta");
+        btn_DarAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_EliminarActionPerformed(evt);
+                btn_DarAltaActionPerformed(evt);
             }
         });
 
@@ -281,7 +281,7 @@ public final class frmIngresos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_DarAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -297,7 +297,7 @@ public final class frmIngresos extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(btn_Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_DarAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
@@ -312,26 +312,18 @@ public final class frmIngresos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
-        if(capturarDatos() != null) {
-            String[] datos = capturarDatos();
+        if(capturarDatos(false) != null) {
+            String[] datos = capturarDatos(false);
             
             matriz.getDatosIngresos().add(datos);
             rellenarTablaIngresos();
+            limpiar();
+            indiceTabla = -1;
         }        
     }//GEN-LAST:event_btn_AgregarActionPerformed
 
     private void btn_LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LimpiarActionPerformed
-        txt_NSS.setText("");
-        txt_Nombre.setText("");
-        cmb_Medico.setSelectedIndex(0);
-        txt_Enfermedad.setText("");
-        cmb_Procedimiento.setSelectedIndex(0);
-        txt_Cama.setText("");
-        cbx_Masculino.setSelected(false);
-        cbx_Femenino.setSelected(false);
-        jdc_Ingreso.setDate(null);
-        jdc_Nacimiento.setDate(null);
-        txt_URL.setText("");
+        limpiar();
     }//GEN-LAST:event_btn_LimpiarActionPerformed
 
     private void cbx_MasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_MasculinoActionPerformed
@@ -349,11 +341,14 @@ public final class frmIngresos extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_NSSActionPerformed
 
     private void btn_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditarActionPerformed
-       if(capturarDatos() != null) {
-           String[] datos = capturarDatos();
+       if(capturarDatos(false) != null) {
+           String[] datos = capturarDatos(false);
 
-           matriz.modificarDatos(indiceTabla, datos, matriz.getDatosIngresos());
+           matriz.modificarDatos(this.txt_NSS.getText(), datos, matriz.getDatosIngresos());
            rellenarTablaIngresos();
+           
+           JOptionPane.showMessageDialog(rootPane, "Se han editado");
+           limpiar();
        } 
     }//GEN-LAST:event_btn_EditarActionPerformed
 
@@ -379,8 +374,8 @@ public final class frmIngresos extends javax.swing.JFrame {
         }
         
         try {
-            this.jdc_Ingreso.setDate(setFecha(String.valueOf(this.table_Ingresos.getValueAt(indice, 7))));
-            this.jdc_Nacimiento.setDate(setFecha(String.valueOf(this.table_Ingresos.getValueAt(indice, 8))));
+            this.jdc_Nacimiento.setDate(setFecha(String.valueOf(this.table_Ingresos.getValueAt(indice, 7))));
+            this.jdc_Ingreso.setDate(setFecha(String.valueOf(this.table_Ingresos.getValueAt(indice, 8))));
         } catch (ParseException ex) {
             System.out.println(ex);
         }
@@ -390,16 +385,17 @@ public final class frmIngresos extends javax.swing.JFrame {
         this.indiceTabla = indice;
     }//GEN-LAST:event_table_IngresosMouseClicked
 
-    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
-        
-        if(indiceTabla >= 0) {
-            matriz.eliminarDatos(indiceTabla, matriz.getDatosIngresos());
-            rellenarTablaIngresos();
-        }
-        else {
-            JOptionPane.showMessageDialog(rootPane, "Seleccione un paciente", "Error", 1);
-        }
-    }//GEN-LAST:event_btn_EliminarActionPerformed
+    private void btn_DarAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DarAltaActionPerformed
+        if(capturarDatos(true) != null) {
+           String[] datos = capturarDatos(true);
+
+           matriz.modificarDatos(this.txt_NSS.getText(), datos, matriz.getDatosIngresos());
+           rellenarTablaIngresos();
+           
+           JOptionPane.showMessageDialog(rootPane, "Se ha dado de alta");
+           limpiar();
+       }
+    }//GEN-LAST:event_btn_DarAltaActionPerformed
 
     private void btn_CambiarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CambiarFotoActionPerformed
         String ruta;
@@ -428,8 +424,8 @@ public final class frmIngresos extends javax.swing.JFrame {
         }
     }
     
-    private String[] capturarDatos() {
-        String[] datos = new String[10];
+    private String[] capturarDatos(boolean bandera) {
+        String[] datos = new String[11];
 
         if("".equals(txt_NSS.getText()) || "".equals(txt_Nombre.getText()) ||
             "".equals(txt_NSS.getText()) || "".equals(txt_Enfermedad.getText()) || "".equals(txt_Cama.getText()) ||
@@ -452,10 +448,15 @@ public final class frmIngresos extends javax.swing.JFrame {
            else if(cbx_Femenino.isSelected() == true)
                datos[6] = "Femenino";
            
-           datos[7] = getFecha(this.jdc_Ingreso.getDate());
-           datos[8] = getFecha(this.jdc_Nacimiento.getDate());
+           datos[7] = getFecha(this.jdc_Nacimiento.getDate());
+           datos[8] = getFecha(this.jdc_Ingreso.getDate());
            
            datos[9] = this.txt_URL.getText();
+           
+           if(bandera == false)
+               datos[10] = "1";
+           else
+               datos[10] = "0";
 
            return datos;
         }    
@@ -472,7 +473,9 @@ public final class frmIngresos extends javax.swing.JFrame {
         
         for (int i = 0; i < numFilas; i++) {
             String[] fila = datos.get(i);
-            modelo.addRow(fila);
+            
+            if(fila[10].equals("1"))
+                modelo.addRow(fila);
         }
         
         table_Ingresos.setModel(modelo);
@@ -503,6 +506,20 @@ public final class frmIngresos extends javax.swing.JFrame {
         Date fechaEstablecer = sdf.parse(fecha);
         
         return fechaEstablecer;
+    }
+    
+    private void limpiar() {
+        txt_NSS.setText("");
+        txt_Nombre.setText("");
+        cmb_Medico.setSelectedIndex(0);
+        txt_Enfermedad.setText("");
+        cmb_Procedimiento.setSelectedIndex(0);
+        txt_Cama.setText("");
+        cbx_Masculino.setSelected(false);
+        cbx_Femenino.setSelected(false);
+        jdc_Ingreso.setDate(null);
+        jdc_Nacimiento.setDate(null);
+        txt_URL.setText("");
     }
     
     /**
@@ -543,8 +560,8 @@ public final class frmIngresos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Agregar;
     private javax.swing.JButton btn_CambiarFoto;
+    private javax.swing.JButton btn_DarAlta;
     private javax.swing.JButton btn_Editar;
-    private javax.swing.JButton btn_Eliminar;
     private javax.swing.JButton btn_Limpiar;
     private javax.swing.JCheckBox cbx_Femenino;
     private javax.swing.JCheckBox cbx_Masculino;

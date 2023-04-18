@@ -27,13 +27,6 @@ public final class frmEgresos extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_Egresos = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        txt_NSS = new javax.swing.JTextField();
-        btn_Restablecer = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
-        btn_Alta = new javax.swing.JButton();
-        btn_Buscar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Egresos");
@@ -43,7 +36,7 @@ public final class frmEgresos extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel8.setText("EGRESOS");
+        jLabel8.setText("BITACORA EGRESOS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -69,7 +62,7 @@ public final class frmEgresos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NSS", "Nombre", "Medico", "Enfermedad", "Procedimiento", "No. Cama", "Genero", "Fecha nacimiento", "Fecha ingreso", "URL Foto"
+                "NSS", "Nombre", "Medico", "Enfermedad", "Procedimiento", "No. Cama", "Genero", "Fecha nacimiento", "Fecha ingreso", "Fecha egreso"
             }
         ));
         table_Egresos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -81,62 +74,12 @@ public final class frmEgresos extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 940, 110));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Fecha egreso:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
-
-        txt_NSS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_NSSActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txt_NSS, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 190, -1));
-
-        btn_Restablecer.setText("Restablecer");
-        btn_Restablecer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_RestablecerActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_Restablecer, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 110, 30));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 190, -1));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("NSS:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
-
-        btn_Alta.setText("Dar alta");
-        getContentPane().add(btn_Alta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 80, 30));
-
-        btn_Buscar1.setText("Buscar");
-        btn_Buscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Buscar1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_Buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 80, 30));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void table_EgresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_EgresosMouseClicked
-       int indice = this.table_Egresos.rowAtPoint(evt.getPoint());
-       
-       this.txt_NSS.setText(String.valueOf(this.table_Egresos.getValueAt(indice, 0)));
+
     }//GEN-LAST:event_table_EgresosMouseClicked
-
-    private void btn_RestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RestablecerActionPerformed
-        rellenarTablaPacientes();
-    }//GEN-LAST:event_btn_RestablecerActionPerformed
-
-    private void txt_NSSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NSSActionPerformed
-        
-    }//GEN-LAST:event_txt_NSSActionPerformed
-
-    private void btn_Buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Buscar1ActionPerformed
-//        filtarPacientes();
-        busquedaPaciente();
-    }//GEN-LAST:event_btn_Buscar1ActionPerformed
 
     public void rellenarTablaPacientes() {
         DefaultTableModel modelo = (DefaultTableModel) this.table_Egresos.getModel();
@@ -148,36 +91,17 @@ public final class frmEgresos extends javax.swing.JFrame {
         
         for (int i = 0; i < numFilas; i++) {
             String[] fila = datos.get(i);
-            modelo.addRow(fila);
-        }
+            
+            String[] filaSinColumnas10y11 = new String[fila.length - 2];
+            System.arraycopy(fila, 0, filaSinColumnas10y11, 0, 9);
+            System.arraycopy(fila, 11, filaSinColumnas10y11, 9, fila.length - 11);
+
+            if (fila[10].equals("0"))
+                modelo.addRow(filaSinColumnas10y11);
+         }
         
         table_Egresos.setModel(modelo);
         table_Egresos.setBackground(new Color(189, 236, 182));
-    }
-    
-    private void filtarPacientes(int indicePaciente) {
-        DefaultTableModel modelo = (DefaultTableModel) this.table_Egresos.getModel();
-        modelo.setRowCount(0);
-        
-        ArrayList<String[]> datos = matriz.getDatosIngresos();
-        
-        
-        String[] fila = datos.get(indicePaciente);
-        modelo.addRow(fila);
-        
-        
-        table_Egresos.setModel(modelo);
-    }
-    
-    private void busquedaPaciente() {
-        int indicePaciente = matriz.buscarPorNSS(this.txt_NSS.getText());
-        
-        if (indicePaciente != -1) {
-            filtarPacientes(indicePaciente);
-        } 
-        else {
-            System.out.println("El paciente no fue encontrado.");
-        }
     }
     
     /**
@@ -216,16 +140,9 @@ public final class frmEgresos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Alta;
-    private javax.swing.JButton btn_Buscar1;
-    private javax.swing.JButton btn_Restablecer;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table_Egresos;
-    private javax.swing.JTextField txt_NSS;
     // End of variables declaration//GEN-END:variables
 }
