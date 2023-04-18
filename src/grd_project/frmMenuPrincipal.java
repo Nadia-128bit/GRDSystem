@@ -174,11 +174,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        frmPizarra pizarra  = new frmPizarra();
+        frmPizarra pizarra  = new frmPizarra(modeloInstancia);
         
         pizarra.setVisible(true);
         pizarra.setResizable(true);
         pizarra.setExtendedState(MAXIMIZED_BOTH);
+        
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**

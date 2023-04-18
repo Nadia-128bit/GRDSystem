@@ -4,17 +4,46 @@
  */
 package grd_project;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Nadia
  */
 public class frmPizarra extends javax.swing.JFrame {
-
+    private Modelo matriz;
     /**
      * Creates new form frmPizarra
      */
-    public frmPizarra() {
+    public frmPizarra(Modelo matriz) {
         initComponents();
+        this.matriz = matriz;
+        rellenarTablaPizarra();
+        
+    }
+    
+    public void rellenarTablaPizarra(){
+        matriz.getDatosIngresos();
+        
+        DefaultTableModel modelo = (DefaultTableModel) this.table_Pizarra.getModel();
+        modelo.setRowCount(0);
+        
+        ArrayList<String[]> pacientes = matriz.getDatosIngresos();
+        
+        int numFilas = pacientes.size();
+        
+        for (int i = 0; i < numFilas; i++) {
+            String[] nom = pacientes.get(i);
+            modelo.addRow(nom);
+           
+        }
+        this.table_Pizarra.setModel(modelo); 
+    }
+   
+ 
+    private frmPizarra() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -42,6 +71,32 @@ public class frmPizarra extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        lbl_nom1 = new javax.swing.JLabel();
+        lbl_nom2 = new javax.swing.JLabel();
+        lbl_nom3 = new javax.swing.JLabel();
+        lbl_nom4 = new javax.swing.JLabel();
+        lbl_nom5 = new javax.swing.JLabel();
+        lbl_nom6 = new javax.swing.JLabel();
+        lbl_nom7 = new javax.swing.JLabel();
+        lbl_nom8 = new javax.swing.JLabel();
+        lbl_nom9 = new javax.swing.JLabel();
+        lbl_nom10 = new javax.swing.JLabel();
+        lbl_nom11 = new javax.swing.JLabel();
+        lbl_nom12 = new javax.swing.JLabel();
+        lbl_ncama2 = new javax.swing.JLabel();
+        lbl_ncama1 = new javax.swing.JLabel();
+        lbl_ncama5 = new javax.swing.JLabel();
+        lbl_ncama10 = new javax.swing.JLabel();
+        lbl_ncama9 = new javax.swing.JLabel();
+        lbl_ncama6 = new javax.swing.JLabel();
+        lbl_ncama12 = new javax.swing.JLabel();
+        lbl_ncama3 = new javax.swing.JLabel();
+        lbl_ncama4 = new javax.swing.JLabel();
+        lbl_ncama7 = new javax.swing.JLabel();
+        lbl_ncama11 = new javax.swing.JLabel();
+        lbl_ncama8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_Pizarra = new javax.swing.JTable();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -54,9 +109,14 @@ public class frmPizarra extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(1920, 1080));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
 
@@ -80,135 +140,143 @@ public class frmPizarra extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 168, 88, 68));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 53, 88, 68));
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 168, 88, 68));
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 43, 88, 68));
 
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 43, 88, 68));
 
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 293, 88, 68));
 
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 293, 88, 68));
 
         jLabel9.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 293, 88, 68));
 
         jLabel10.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 43, 88, 68));
 
         jLabel11.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 168, 88, 68));
 
         jLabel12.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 293, 88, 68));
 
         jLabel13.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Cama.png")); // NOI18N
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 181, 88, 68));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(98, 98, 98)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(81, 81, 81)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 9, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(105, 105, 105)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(54, 54, 54)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(627, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(91, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(43, 43, 43)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(330, Short.MAX_VALUE)))
-        );
+        lbl_nom1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbl_nom1.setPreferredSize(new java.awt.Dimension(9, 18));
+        jPanel1.add(lbl_nom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 134, 110, 16));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(609, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
-        );
+        lbl_nom2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbl_nom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 134, 120, 20));
+
+        lbl_nom3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbl_nom3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 120, 20));
+
+        lbl_nom4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbl_nom4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 90, 20));
+
+        lbl_nom5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbl_nom5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 90, 20));
+
+        lbl_nom6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbl_nom6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 90, 20));
+
+        lbl_nom7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbl_nom7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 100, 20));
+
+        lbl_nom8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbl_nom8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 90, 20));
+
+        lbl_nom9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbl_nom9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 90, 20));
+
+        lbl_nom10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbl_nom10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 100, 20));
+
+        lbl_nom11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbl_nom11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 120, 20));
+
+        lbl_nom12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbl_nom12, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 90, 20));
+
+        lbl_ncama2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama2, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 134, 18, 16));
+
+        lbl_ncama1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 134, 18, 16));
+
+        lbl_ncama5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama5, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 264, 18, 16));
+
+        lbl_ncama10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama10, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 379, 18, 16));
+
+        lbl_ncama9.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama9, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 379, 18, 16));
+
+        lbl_ncama6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama6, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 264, 18, 16));
+
+        lbl_ncama12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama12, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, 18, 16));
+
+        lbl_ncama3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 18, 16));
+
+        lbl_ncama4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 18, 16));
+
+        lbl_ncama7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 18, 16));
+
+        lbl_ncama11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 18, 16));
+
+        lbl_ncama8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 255, 204), null, null));
+        jPanel1.add(lbl_ncama8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 18, 16));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 710, 430));
+
+        table_Pizarra.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "No. Cama", "Nombre "
+            }
+        ));
+        jScrollPane1.setViewportView(table_Pizarra);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 130, -1, 110));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+     
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -262,5 +330,31 @@ public class frmPizarra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_ncama1;
+    private javax.swing.JLabel lbl_ncama10;
+    private javax.swing.JLabel lbl_ncama11;
+    private javax.swing.JLabel lbl_ncama12;
+    private javax.swing.JLabel lbl_ncama2;
+    private javax.swing.JLabel lbl_ncama3;
+    private javax.swing.JLabel lbl_ncama4;
+    private javax.swing.JLabel lbl_ncama5;
+    private javax.swing.JLabel lbl_ncama6;
+    private javax.swing.JLabel lbl_ncama7;
+    private javax.swing.JLabel lbl_ncama8;
+    private javax.swing.JLabel lbl_ncama9;
+    private javax.swing.JLabel lbl_nom1;
+    private javax.swing.JLabel lbl_nom10;
+    private javax.swing.JLabel lbl_nom11;
+    private javax.swing.JLabel lbl_nom12;
+    private javax.swing.JLabel lbl_nom2;
+    private javax.swing.JLabel lbl_nom3;
+    private javax.swing.JLabel lbl_nom4;
+    private javax.swing.JLabel lbl_nom5;
+    private javax.swing.JLabel lbl_nom6;
+    private javax.swing.JLabel lbl_nom7;
+    private javax.swing.JLabel lbl_nom8;
+    private javax.swing.JLabel lbl_nom9;
+    private javax.swing.JTable table_Pizarra;
     // End of variables declaration//GEN-END:variables
 }
