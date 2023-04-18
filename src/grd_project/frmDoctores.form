@@ -227,9 +227,6 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btn_Agregar">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\FotosGRD\A&#xf1;adir.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
           <Events>
@@ -238,9 +235,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_Editar">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\FotosGRD\Editar.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Editar"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[75, 25]"/>
@@ -255,9 +249,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_Eliminar">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\FotosGRD\Eliminar.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
           <Events>
@@ -266,9 +257,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_Limpiar">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\FotosGRD\Limpiar.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Limpiar"/>
           </Properties>
           <Events>
@@ -322,9 +310,6 @@
     </Container>
     <Component class="javax.swing.JButton" name="btn_CambiarFoto">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\FotosGRD\Foto.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Cambiar foto"/>
       </Properties>
       <Events>

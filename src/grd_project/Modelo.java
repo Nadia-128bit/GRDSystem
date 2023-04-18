@@ -66,6 +66,17 @@ public class Modelo {
             System.out.println("Índice inválido. No se pudo modificar el elemento.");
     }
     
+    public int buscarPorNSS(String nssPaciente) {
+        int indice = 0;
+        for (String[] fila : datosIngresos) {
+            if (fila[0].equalsIgnoreCase(nssPaciente)) {
+                return indice;
+            }
+            indice++;
+        }
+        return -1;
+    }
+    
     //Fechas 
     SimpleDateFormat Formato = new SimpleDateFormat("dd-MM-yyyy");
     

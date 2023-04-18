@@ -1,7 +1,11 @@
 package grd_project;
 
+import java.awt.Color;
 import java.awt.Image;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -22,6 +26,7 @@ public final class frmIngresos extends javax.swing.JFrame {
         
         obtenerDatos();
         rellenarTablaIngresos();
+        indiceTabla = -1;
     }
 
     private frmIngresos() {
@@ -34,7 +39,6 @@ public final class frmIngresos extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txt_Enfermedad = new javax.swing.JTextField();
@@ -51,6 +55,10 @@ public final class frmIngresos extends javax.swing.JFrame {
         cbx_Masculino = new javax.swing.JCheckBox();
         cbx_Femenino = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
+        jdc_Ingreso = new com.toedter.calendar.JDateChooser();
+        jdc_Nacimiento = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_Ingresos = new javax.swing.JTable();
@@ -60,6 +68,7 @@ public final class frmIngresos extends javax.swing.JFrame {
         btn_Eliminar = new javax.swing.JButton();
         btn_Limpiar = new javax.swing.JButton();
         lbl_fotoIngreso = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ingresos");
@@ -73,10 +82,6 @@ public final class frmIngresos extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Nombre(s):");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, 30));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("No. Cama:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Médico a cargo:");
@@ -95,7 +100,7 @@ public final class frmIngresos extends javax.swing.JFrame {
         getContentPane().add(txt_NSS, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 170, -1));
         getContentPane().add(txt_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 170, -1));
         getContentPane().add(txt_Cama, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 170, -1));
-        getContentPane().add(txt_URL, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, 170, -1));
+        getContentPane().add(txt_URL, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 170, -1));
 
         cmb_Medico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--- Seleccionar médico ---" }));
         getContentPane().add(cmb_Medico, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 170, -1));
@@ -124,14 +129,13 @@ public final class frmIngresos extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 960, 60));
 
-        btn_CambiarFoto.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Foto.png")); // NOI18N
         btn_CambiarFoto.setText("Cambiar foto");
         btn_CambiarFoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_CambiarFotoActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_CambiarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, 130, 30));
+        getContentPane().add(btn_CambiarFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 520, 130, 30));
 
         cmb_Procedimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--- Seleccionar procedimiento ---", "Transplante", "Diagnóstico", "Transfusión", "Defusión" }));
         getContentPane().add(cmb_Procedimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
@@ -176,22 +180,49 @@ public final class frmIngresos extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fechas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
+        jdc_Ingreso.setDateFormatString("dd/MM/yyyy");
+
+        jdc_Nacimiento.setDateFormatString("dd/MM/yyyy");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("Fecha ingreso:");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setText("Fecha nacimiento:");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 528, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jdc_Ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jdc_Nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 42, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jdc_Nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdc_Ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 540, 70));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 540, 100));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Fotografía:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 530, -1, -1));
 
         table_Ingresos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,7 +244,6 @@ public final class frmIngresos extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
-        btn_Agregar.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Añadir.png")); // NOI18N
         btn_Agregar.setText("Agregar");
         btn_Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,7 +251,6 @@ public final class frmIngresos extends javax.swing.JFrame {
             }
         });
 
-        btn_Editar.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Editar.png")); // NOI18N
         btn_Editar.setText("Editar");
         btn_Editar.setMaximumSize(new java.awt.Dimension(75, 25));
         btn_Editar.setMinimumSize(new java.awt.Dimension(75, 25));
@@ -231,7 +260,6 @@ public final class frmIngresos extends javax.swing.JFrame {
             }
         });
 
-        btn_Eliminar.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Eliminar.png")); // NOI18N
         btn_Eliminar.setText("Eliminar");
         btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,7 +267,6 @@ public final class frmIngresos extends javax.swing.JFrame {
             }
         });
 
-        btn_Limpiar.setIcon(new javax.swing.ImageIcon("C:\\FotosGRD\\Limpiar.png")); // NOI18N
         btn_Limpiar.setText("Limpiar");
         btn_Limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,6 +304,10 @@ public final class frmIngresos extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, 180, 480));
         getContentPane().add(lbl_fotoIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 140, 140));
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setText("No. Cama:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -298,6 +329,8 @@ public final class frmIngresos extends javax.swing.JFrame {
         txt_Cama.setText("");
         cbx_Masculino.setSelected(false);
         cbx_Femenino.setSelected(false);
+        jdc_Ingreso.setDate(null);
+        jdc_Nacimiento.setDate(null);
         txt_URL.setText("");
     }//GEN-LAST:event_btn_LimpiarActionPerformed
 
@@ -345,14 +378,27 @@ public final class frmIngresos extends javax.swing.JFrame {
             cbx_Masculino.setSelected(false);
         }
         
+        try {
+            this.jdc_Ingreso.setDate(setFecha(String.valueOf(this.table_Ingresos.getValueAt(indice, 7))));
+            this.jdc_Nacimiento.setDate(setFecha(String.valueOf(this.table_Ingresos.getValueAt(indice, 8))));
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        
         this.txt_URL.setText(String.valueOf(this.table_Ingresos.getValueAt(indice, 9)));
         
         this.indiceTabla = indice;
     }//GEN-LAST:event_table_IngresosMouseClicked
 
     private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
-        matriz.eliminarDatos(indiceTabla, matriz.getDatosIngresos());
-        rellenarTablaIngresos();
+        
+        if(indiceTabla >= 0) {
+            matriz.eliminarDatos(indiceTabla, matriz.getDatosIngresos());
+            rellenarTablaIngresos();
+        }
+        else {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un paciente", "Error", 1);
+        }
     }//GEN-LAST:event_btn_EliminarActionPerformed
 
     private void btn_CambiarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CambiarFotoActionPerformed
@@ -388,7 +434,8 @@ public final class frmIngresos extends javax.swing.JFrame {
         if("".equals(txt_NSS.getText()) || "".equals(txt_Nombre.getText()) ||
             "".equals(txt_NSS.getText()) || "".equals(txt_Enfermedad.getText()) || "".equals(txt_Cama.getText()) ||
                cmb_Medico.getSelectedIndex() == 0 || cmb_Procedimiento.getSelectedIndex() == 0 || 
-               (cbx_Masculino.isSelected() == false && cbx_Femenino.isSelected() == false)){
+               (cbx_Masculino.isSelected() == false && cbx_Femenino.isSelected() == false) ||
+                jdc_Ingreso.getDate() == null || jdc_Nacimiento.getDate() == null){
 
            JOptionPane.showMessageDialog(rootPane, "Hay campos vacios", "Error", 1);
         }
@@ -404,7 +451,10 @@ public final class frmIngresos extends javax.swing.JFrame {
                datos[6] = "Masculino";
            else if(cbx_Femenino.isSelected() == true)
                datos[6] = "Femenino";
-
+           
+           datos[7] = getFecha(this.jdc_Ingreso.getDate());
+           datos[8] = getFecha(this.jdc_Nacimiento.getDate());
+           
            datos[9] = this.txt_URL.getText();
 
            return datos;
@@ -425,7 +475,8 @@ public final class frmIngresos extends javax.swing.JFrame {
             modelo.addRow(fila);
         }
         
-        table_Ingresos.setModel(modelo);       
+        table_Ingresos.setModel(modelo);
+        table_Ingresos.setBackground(new Color(189, 236, 182));
     }
     
     public int buscarIndiceCMB(String nombre, JComboBox combo) {
@@ -437,6 +488,21 @@ public final class frmIngresos extends javax.swing.JFrame {
         }
         
         return -1;
+    }
+    
+    private String getFecha(Date fecha) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaFormateada = sdf.format(fecha);
+        
+        return fechaFormateada;
+    }
+    
+    private Date setFecha(String fecha) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        Date fechaEstablecer = sdf.parse(fecha);
+        
+        return fechaEstablecer;
     }
     
     /**
@@ -485,17 +551,21 @@ public final class frmIngresos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_Medico;
     private javax.swing.JComboBox<String> cmb_Procedimiento;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JDateChooser jdc_Ingreso;
+    private com.toedter.calendar.JDateChooser jdc_Nacimiento;
     private javax.swing.JLabel lbl_fotoIngreso;
     private javax.swing.JTable table_Ingresos;
     private javax.swing.JTextField txt_Cama;

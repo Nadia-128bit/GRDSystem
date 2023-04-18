@@ -149,11 +149,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        frmEgresos egresos = new frmEgresos();
+        frmEgresos egresos = new frmEgresos(modeloInstancia);
         
+        egresos.setSize(975, 450);
+        egresos.setLocationRelativeTo(null);
         egresos.setVisible(true);
-        egresos.setResizable(true);
-        egresos.setExtendedState(MAXIMIZED_BOTH);
+//        egresos.setResizable(true);
+//        egresos.setExtendedState(NORMAL);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
