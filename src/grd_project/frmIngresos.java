@@ -432,11 +432,9 @@ public final class frmIngresos extends javax.swing.JFrame {
                datos[6] = "Masculino";
            else if(cbx_Femenino.isSelected() == true)
                datos[6] = "Femenino";
-
-           SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
            
-           datos[7] = sdf.format(this.jdc_Ingreso.getDate());
-           datos[8] = sdf.format(this.jdc_Nacimiento.getDate());
+           datos[7] = formatoFecha(this.jdc_Ingreso.getDate());
+           datos[8] = formatoFecha(this.jdc_Nacimiento.getDate());
            
            datos[9] = this.txt_URL.getText();
 
@@ -470,6 +468,13 @@ public final class frmIngresos extends javax.swing.JFrame {
         }
         
         return -1;
+    }
+    
+    private String formatoFecha(Date fecha) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaFormateada = sdf.format(fecha);
+        
+        return fechaFormateada;
     }
     
     /**
