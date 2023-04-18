@@ -254,7 +254,7 @@ public final class frmDoctores extends javax.swing.JFrame {
     private void btn_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditarActionPerformed
         String[] datos = capturarDatos();
         
-        matriz.modificarDatos(indiceTabla, datos, matriz.getDatosDoctores());
+        matriz.modificarDatos(this.txt_IDDoctor.getText(), datos, matriz.getDatosDoctores());
         rellenarTablaDoctores();
     }//GEN-LAST:event_btn_EditarActionPerformed
 

@@ -34,13 +34,13 @@ public class Modelo {
     private void datosDefaultIngresos() {
         this.datosIngresos = new ArrayList<>();
         
-        String[] fila1 = {"1", "Melchor Serrano", "Nadia Gomez", "Gastritis", "Diagnóstico", "3", "Masculino", "18/01/1999", "15/04/2023", "INSERTAR URL"};
+        String[] fila1 = {"1", "Melchor Serrano", "Nadia Gomez", "Gastritis", "Diagnóstico", "3", "Masculino", "18/01/1999", "15/04/2023", "INSERTAR URL", "1"};
         this.datosIngresos.add(fila1);
         
-        String[] fila2 = {"2", "Jacinta Patiño", "César Bernal", "Migraña", "Diagnóstico", "1", "Femenino", "28/09/1983", "10/03/2023", "INSERTAR URL"};
+        String[] fila2 = {"2", "Jacinta Patiño", "César Bernal", "Migraña", "Diagnóstico", "1", "Femenino", "28/09/1983", "10/03/2023", "INSERTAR URL", "1"};
         this.datosIngresos.add(fila2);
         
-        String[] fila3 = {"3", "Casimiro da Silva", "Nadia Gomez", "Insuficiencia renal", "Transfusión", "7", "Masculino", "07/10/2003", "15/04/2023", "INSERTAR URL"};
+        String[] fila3 = {"3", "Casimiro da Silva", "Nadia Gomez", "Insuficiencia renal", "Transfusión", "7", "Masculino", "07/10/2003", "15/04/2023", "INSERTAR URL", "1"};
         this.datosIngresos.add(fila3);
     }
     
@@ -59,7 +59,8 @@ public class Modelo {
             System.out.println("Error: El índice proporcionado está fuera del rango de datos.");
     }
     
-    public void modificarDatos(int indice, String[] nuevosDatos, ArrayList<String[]> datos) {
+    public void modificarDatos(String nss, String[] nuevosDatos, ArrayList<String[]> datos) {
+        int indice = buscarPorNSS(nss);
         if (indice >= 0 && indice < datos.size())
             datos.set(indice, nuevosDatos);
         else
