@@ -1,6 +1,7 @@
 package grd_project;
 
 import java.awt.Image;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -326,6 +327,8 @@ public final class frmIngresos extends javax.swing.JFrame {
         txt_Cama.setText("");
         cbx_Masculino.setSelected(false);
         cbx_Femenino.setSelected(false);
+        jdc_Ingreso.setDate(null);
+        jdc_Nacimiento.setDate(null);
         txt_URL.setText("");
     }//GEN-LAST:event_btn_LimpiarActionPerformed
 
@@ -373,6 +376,13 @@ public final class frmIngresos extends javax.swing.JFrame {
             cbx_Masculino.setSelected(false);
         }
         
+        try {
+            this.jdc_Ingreso.setDate(setFecha(String.valueOf(this.table_Ingresos.getValueAt(indice, 7))));
+            this.jdc_Nacimiento.setDate(setFecha(String.valueOf(this.table_Ingresos.getValueAt(indice, 8))));
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        
         this.txt_URL.setText(String.valueOf(this.table_Ingresos.getValueAt(indice, 9)));
         
         this.indiceTabla = indice;
@@ -416,7 +426,8 @@ public final class frmIngresos extends javax.swing.JFrame {
         if("".equals(txt_NSS.getText()) || "".equals(txt_Nombre.getText()) ||
             "".equals(txt_NSS.getText()) || "".equals(txt_Enfermedad.getText()) || "".equals(txt_Cama.getText()) ||
                cmb_Medico.getSelectedIndex() == 0 || cmb_Procedimiento.getSelectedIndex() == 0 || 
-               (cbx_Masculino.isSelected() == false && cbx_Femenino.isSelected() == false)){
+               (cbx_Masculino.isSelected() == false && cbx_Femenino.isSelected() == false) ||
+                jdc_Ingreso.getDate() == null || jdc_Nacimiento.getDate() == null){
 
            JOptionPane.showMessageDialog(rootPane, "Hay campos vacios", "Error", 1);
         }
@@ -433,8 +444,8 @@ public final class frmIngresos extends javax.swing.JFrame {
            else if(cbx_Femenino.isSelected() == true)
                datos[6] = "Femenino";
            
-           datos[7] = formatoFecha(this.jdc_Ingreso.getDate());
-           datos[8] = formatoFecha(this.jdc_Nacimiento.getDate());
+           datos[7] = getFecha(this.jdc_Ingreso.getDate());
+           datos[8] = getFecha(this.jdc_Nacimiento.getDate());
            
            datos[9] = this.txt_URL.getText();
 
@@ -470,11 +481,19 @@ public final class frmIngresos extends javax.swing.JFrame {
         return -1;
     }
     
-    private String formatoFecha(Date fecha) {
+    private String getFecha(Date fecha) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String fechaFormateada = sdf.format(fecha);
         
         return fechaFormateada;
+    }
+    
+    private Date setFecha(String fecha) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        Date fechaEstablecer = sdf.parse(fecha);
+        
+        return fechaEstablecer;
     }
     
     /**
