@@ -74,7 +74,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         label2.setPreferredSize(new java.awt.Dimension(1920, 36));
         label2.setText("                                                                         BIENVENIDO AL SISTEMA");
         getContentPane().add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, -1));
-        getContentPane().add(L_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 250, 220));
+
+        L_foto.setPreferredSize(new java.awt.Dimension(1920, 1080));
+        getContentPane().add(L_foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 510, 300));
 
         jDateChooser1.setDateFormatString("dd /MM /yyyy");
         getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 230, 20));
@@ -159,7 +161,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        String urlImagen = "//NadiaG/fotosGRD/GRD.png";
+        String urlImagen = "//NadiaG/fotosGRD/FondoGRD.png";
         ImageIcon img = new ImageIcon(urlImagen);
         Icon micono = new ImageIcon(img.getImage().getScaledInstance(this.L_foto.getWidth(),this.L_foto.getHeight(),Image.SCALE_DEFAULT));
         this.L_foto.setIcon(micono);

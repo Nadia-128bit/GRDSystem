@@ -170,9 +170,14 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="L_foto">
+      <Properties>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[1920, 1080]"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="200" y="140" width="250" height="220"/>
+          <AbsoluteConstraints x="390" y="220" width="510" height="300"/>
         </Constraint>
       </Constraints>
     </Component>

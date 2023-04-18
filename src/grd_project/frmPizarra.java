@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package grd_project;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Nadia
- */
+
 public class frmPizarra extends javax.swing.JFrame {
     private Modelo matriz;
     /**
@@ -32,13 +26,24 @@ public class frmPizarra extends javax.swing.JFrame {
         ArrayList<String[]> pacientes = matriz.getDatosIngresos();
         
         int numFilas = pacientes.size();
-        
+       
         for (int i = 0; i < numFilas; i++) {
             String[] nom = pacientes.get(i);
             modelo.addRow(nom);
-           
-        }
+            table_Pizarra.getColumnModel();
+            
+        }  
+//        ArrayList<String[]> datos = matriz.getDatosIngresos();
+//                
+//        for (String[] fila : datos) {
+//            lbl_nom1.setText(fila[1]);
+//            lbl_ncama1.setText(fila[5]);
+//            lbl_nom2.setText(fila[1]);
+//            lbl_ncama2.setText(fila[5]);
+//            modelo.addRow(fila);
+//        }
         this.table_Pizarra.setModel(modelo); 
+        
     }
    
  
