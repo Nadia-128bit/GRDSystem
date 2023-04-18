@@ -152,6 +152,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         frmEgresos egresos = new frmEgresos(modeloInstancia);
         
         egresos.setSize(975, 450);
+        egresos.setLocationRelativeTo(null);
         egresos.setVisible(true);
 //        egresos.setResizable(true);
 //        egresos.setExtendedState(NORMAL);

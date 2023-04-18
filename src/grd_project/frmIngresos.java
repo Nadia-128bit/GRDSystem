@@ -26,6 +26,7 @@ public final class frmIngresos extends javax.swing.JFrame {
         
         obtenerDatos();
         rellenarTablaIngresos();
+        indiceTabla = -1;
     }
 
     private frmIngresos() {
@@ -390,8 +391,14 @@ public final class frmIngresos extends javax.swing.JFrame {
     }//GEN-LAST:event_table_IngresosMouseClicked
 
     private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
-        matriz.eliminarDatos(indiceTabla, matriz.getDatosIngresos());
-        rellenarTablaIngresos();
+        
+        if(indiceTabla >= 0) {
+            matriz.eliminarDatos(indiceTabla, matriz.getDatosIngresos());
+            rellenarTablaIngresos();
+        }
+        else {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un paciente", "Error", 1);
+        }
     }//GEN-LAST:event_btn_EliminarActionPerformed
 
     private void btn_CambiarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CambiarFotoActionPerformed

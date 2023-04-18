@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +18,7 @@ public final class frmDoctores extends javax.swing.JFrame {
         initComponents();
         
         this.matriz = matriz;
+        indiceTabla = -1;
         
         rellenarTablaDoctores();
     }
@@ -257,8 +259,13 @@ public final class frmDoctores extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_EditarActionPerformed
 
     private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
-        matriz.eliminarDatos(indiceTabla, matriz.getDatosDoctores());
-        rellenarTablaDoctores();
+        if(indiceTabla >= 0) {
+            matriz.eliminarDatos(indiceTabla, matriz.getDatosDoctores());
+            rellenarTablaDoctores();
+        }
+        else {
+             JOptionPane.showMessageDialog(rootPane, "Seleccione un doctor", "Error", 1);
+        }
     }//GEN-LAST:event_btn_EliminarActionPerformed
 
     private void btn_CambiarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CambiarFotoActionPerformed
